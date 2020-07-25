@@ -1,0 +1,12 @@
+{
+  "name": "028-Flash-cards",
+  "displayName": "028-Flash-cards",
+  "expo": {
+    "name": "028-Flash-cards",
+    "slug": "028-Flash-cards",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
