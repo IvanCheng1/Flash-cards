@@ -16,20 +16,25 @@ class Home extends Component {
     this.props.dispatch(handleReceiveDecks());
   }
 
-  handlePress = () => {
-    alert("go to new page")
-  }
+  handlePress = (id) => {
+    this.props.navigation.navigate("DeckPage", {
+      id,
+    });
+  };
 
   render() {
     const { decks } = this.props;
-    // console.log(decks);
+
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Your Decks</Text>
         {Object.keys(decks).map((id) => (
-          <TouchableOpacity style={styles.btn} onPress={this.handlePress}>
-            <Deck style={styles.btnText} key={id} id={id} />
-            {/* <Text style={styles.btnText}>Touch</Text> */}
+          <TouchableOpacity
+            style={styles.btn}
+            onPress={() => this.handlePress(id)}
+            key={id}
+          >
+            <Deck key={id} id={id} />
           </TouchableOpacity>
         ))}
       </View>
@@ -38,6 +43,12 @@ class Home extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   btn: {
     backgroundColor: "#E53224",
     padding: 10,
