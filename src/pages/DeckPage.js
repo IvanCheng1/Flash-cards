@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { handleRemoveDeck } from "../actions/decks";
 import { myStyles } from "../utils/myStyles";
@@ -53,7 +53,7 @@ class DeckPage extends Component {
 
     return (
       <View style={myStyles.container}>
-        <Text style={[myStyles.title, {margin: 5,}]}>{title}</Text>
+        <Text style={[myStyles.title, { margin: 5 }]}>{title}</Text>
         <Text style={myStyles.subtitle}>
           {no} {no === 1 ? "card" : "cards"}
         </Text>

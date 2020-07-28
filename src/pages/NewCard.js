@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Text, View, TextInput, Button, KeyboardAvoidingView } from "react-native";
+import { Text, TextInput, Button, KeyboardAvoidingView } from "react-native";
 import { handleAddQuestion } from "../actions/questions";
 import { myStyles } from "../utils/myStyles";
 
@@ -37,7 +37,7 @@ class NewCard extends Component {
     const title = decks[id].title;
 
     return (
-      <KeyboardAvoidingView behavior='padding' style={myStyles.container}>
+      <KeyboardAvoidingView behavior="padding" style={myStyles.container}>
         <Text style={myStyles.title}>New Card for {title}</Text>
         <TextInput
           value={question}

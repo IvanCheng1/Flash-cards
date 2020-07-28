@@ -11,7 +11,6 @@ export const myStyles = StyleSheet.create({
     fontSize: 28,
     lineHeight: 36,
     color: "#f4511e",
-    // marginBottom: 20,
     margin: 20,
     fontWeight: "bold",
   },
@@ -19,7 +18,6 @@ export const myStyles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 22,
     color: "#f88967",
-    // marginTop: 20,
   },
   btn: {
     backgroundColor: "#f56436",
@@ -37,7 +35,6 @@ export const myStyles = StyleSheet.create({
     backgroundColor: "#bc3409",
   },
   input: {
-    // marginTop: 25,
     padding: 15,
     borderColor: "#f4511e",
     borderWidth: 1,
@@ -59,12 +56,12 @@ export const myStyles = StyleSheet.create({
     height: 200,
   },
   questionText: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 20,
     paddingBottom: 10,
   },
   questionAnswer: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 18,
     color: "#bc3409",
   },
