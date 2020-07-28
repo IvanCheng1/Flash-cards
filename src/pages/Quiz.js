@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import QuestionCard from "../components/QuestionCard";
 import ResetQuiz from "../components/ResetQuiz";
+import { myStyles } from "../utils/myStyles";
+import NoCards from "../components/NoCards";
 
 function mapStateToProps({ decks }) {
   return {
@@ -64,11 +66,18 @@ class Quiz extends Component {
     this.props.navigation.navigate("Home");
   };
 
+  addCard = (id) => {
+    this.props.navigation.navigate("NewCard", {
+      id,
+    });
+  }
+
   render() {
-    console.log("here", this.props.navigation);
-    const id = this.props.route.params.id;
+    const { id, title } = this.props.route.params;
     const { length, index, score } = this.state;
-    if (index < length) {
+    if (length === 0) {
+      return <NoCards title={title} id={id} addCard={this.addCard}/>;
+    } else if (index < length) {
       return (
         <QuestionCard
           id={id}
@@ -92,27 +101,5 @@ class Quiz extends Component {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  btn: {
-    backgroundColor: "#E53224",
-    padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    margin: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-  },
-  btnText: {
-    color: "#FFF",
-  },
-});
 
 export default connect(mapStateToProps)(Quiz);

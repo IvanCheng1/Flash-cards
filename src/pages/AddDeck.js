@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { StyleSheet, Text, View, TextInput, Button,TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button,TouchableOpacity, KeyboardAvoidingView } from "react-native";
 import { handleAddDeck } from "../actions/decks";
-import { set } from "react-native-reanimated";
-import { deleteDeck } from "../utils/api";
+import { myStyles } from "../utils/myStyles";
 
 function mapStateToProps({ decks }) {
   return {
@@ -37,11 +36,11 @@ class AddDeck extends Component {
   render() {
     const { deck } = this.state;
     return (
-      <View style={styles.container}>
-        <Text>Add Deck</Text>
+      <KeyboardAvoidingView behavior='padding' style={myStyles.container}>
+        <Text style={myStyles.title}>Add Deck</Text>
         <TextInput
           value={deck}
-          style={styles.input}
+          style={myStyles.input}
           placeholder="Deck Name"
           onChangeText={(input) => this.setState({ deck: input })}
         />
@@ -50,43 +49,16 @@ class AddDeck extends Component {
           disabled={deck ? false : true}
           title="Create Deck"
         />
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.btn}
           onPress={this.handleSubmit}
         >
-          <Text>Create Deck</Text>
-        </TouchableOpacity>
-      </View>
+          <Text style={styles.btnText}>Create Deck</Text>
+        </TouchableOpacity> */}
+      </KeyboardAvoidingView>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  input: {
-    padding: 15,
-    backgroundColor: "grey",
-    borderRadius: 10,
-    marginBottom: 20,
-  },
-  btn: {
-    backgroundColor: "#E53224",
-    padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    margin: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-  },
-  btnText: {
-    color: "#FFF",
-  },
-});
 
 export default connect(mapStateToProps)(AddDeck);

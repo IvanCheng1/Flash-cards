@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { handleRemoveDeck } from "../actions/decks";
+import { myStyles } from "../utils/myStyles";
 import Modal, {
   ModalFooter,
   ModalButton,
@@ -32,9 +33,10 @@ class DeckPage extends Component {
     this.props.dispatch(handleRemoveDeck(deckId));
   };
 
-  startQuiz = (id) => {
+  startQuiz = (id, title) => {
     this.props.navigation.navigate("Quiz", {
       id,
+      title,
     });
   };
 
@@ -50,23 +52,31 @@ class DeckPage extends Component {
     }
 
     return (
-      <View style={styles.container}>
-        <Text>{title}</Text>
-        <Text>
+      <View style={myStyles.container}>
+        <Text style={[myStyles.title, {margin: 5,}]}>{title}</Text>
+        <Text style={myStyles.subtitle}>
           {no} {no === 1 ? "card" : "cards"}
         </Text>
-        <TouchableOpacity style={styles.btn} onPress={() => this.addCard(id)}>
-          <Text>New Card</Text>
+        <TouchableOpacity style={myStyles.btn} onPress={() => this.addCard(id)}>
+          <Text style={myStyles.btnText}>New Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={() => this.startQuiz(id)}>
-          <Text>Start Quiz</Text>
-        </TouchableOpacity>
-        <Text>Button to View All</Text>
         <TouchableOpacity
-          style={styles.btn}
+          style={myStyles.btn}
+          onPress={() => this.startQuiz(id, title)}
+        >
+          <Text style={myStyles.btnText}>Start Quiz</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={myStyles.btn}
+          onPress={() => alert("Feature coming")}
+        >
+          <Text style={myStyles.btnText}>View All Cards</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[myStyles.btn, myStyles.btnDark]}
           onPress={() => this.setState({ visible: true })}
         >
-          <Text>Delete Deck</Text>
+          <Text style={myStyles.btnText}>Delete Deck</Text>
         </TouchableOpacity>
         <Modal
           visible={this.state.visible}
@@ -100,27 +110,5 @@ class DeckPage extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  btn: {
-    backgroundColor: "#E53224",
-    padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    margin: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-  },
-  btnText: {
-    color: "#FFF",
-  },
-});
 
 export default connect(mapStateToProps)(DeckPage);

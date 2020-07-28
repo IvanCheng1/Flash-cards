@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { myStyles } from "../utils/myStyles";
 
 function mapStateToProps(
   { decks },
@@ -36,7 +37,7 @@ class QuestionCard extends Component {
 
   renderAnswer = (ans) => {
     if (this.props.showAnswer) {
-      return <Text>{ans}</Text>;
+      return <Text style={myStyles.questionAnswer}>{ans}</Text>;
     }
   };
 
@@ -49,6 +50,7 @@ class QuestionCard extends Component {
       handleToggleShowAnswer,
       length,
       questions,
+      showAnswer,
     } = this.props;
 
     let currentQuestion;
@@ -66,56 +68,38 @@ class QuestionCard extends Component {
     }
 
     return (
-      <View style={styles.container}>
-        <Text>Quiz Page - {title}</Text>
-        <Text>
+      <View style={myStyles.container}>
+        <Text style={[myStyles.title, { margin: 5 }]}>{title}</Text>
+        <Text style={myStyles.subtitle}>
           {index + 1} / {length}
         </Text>
-        <Text>{currentQuestion}</Text>
-        <View>{this.renderAnswer(currentAnswer)}</View>
+        <View style={myStyles.questionCard}>
+          <Text style={myStyles.questionText}>{currentQuestion}</Text>
+          {this.renderAnswer(currentAnswer)}
+        </View>
         <TouchableOpacity
-          style={styles.btn}
+          style={[myStyles.btn, myStyles.btnDark]}
           onPress={() => handleToggleShowAnswer()}
         >
-          <Text>Show Answer</Text>
+          <Text style={myStyles.btnText}>
+            {showAnswer ? "Hide Answer" : "Show Answer"}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.btn}
+          style={myStyles.btn}
           onPress={() => answerQuestion("correct")}
         >
-          <Text>Correct</Text>
+          <Text style={myStyles.btnText}>Correct</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.btn}
+          style={myStyles.btn}
           onPress={() => answerQuestion("incorrect")}
         >
-          <Text>Incorrect</Text>
+          <Text style={myStyles.btnText}>Incorrect</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  btn: {
-    backgroundColor: "#E53224",
-    padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    margin: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-  },
-  btnText: {
-    color: "#FFF",
-  },
-});
 
 export default connect(mapStateToProps)(QuestionCard);

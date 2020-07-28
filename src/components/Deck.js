@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { StyleSheet, Text, View } from "react-native";
+import { myStyles } from "../utils/myStyles";
 
 function mapStateToProps({ decks }, id) {
   return {
@@ -14,23 +15,12 @@ class Deck extends Component {
 
   render() {
     const { decks, id } = this.props;
-    // console.log(decks)
     return (
       <View>
-        <Text>{decks[id.id].title}</Text>
-        {/* <Text>Deck</Text> */}
+        <Text style={myStyles.btnText}>{decks[id.id].title}</Text>
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export default connect(mapStateToProps)(Deck);

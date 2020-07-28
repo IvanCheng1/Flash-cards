@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { Text, View, TextInput, Button, KeyboardAvoidingView } from "react-native";
 import { handleAddQuestion } from "../actions/questions";
+import { myStyles } from "../utils/myStyles";
 
 function mapStateToProps({ decks }) {
   return {
@@ -16,10 +17,6 @@ class NewCard extends Component {
   };
 
   handleSubmit = (id) => {
-    // alert("New card added!");
-    // this.props.navigation.push("home")
-
-    // handle add new card
     this.props.dispatch(
       handleAddQuestion(
         this.props.route.params.id,
@@ -27,9 +24,6 @@ class NewCard extends Component {
         this.state.answer
       )
     );
-
-    // console.log("Question:", this.state.question);
-    // console.log("Answer:", this.state.answer);
 
     this.props.navigation.navigate("DeckPage", {
       id,
@@ -43,17 +37,17 @@ class NewCard extends Component {
     const title = decks[id].title;
 
     return (
-      <View style={styles.container}>
-        <Text>new card for {title}</Text>
+      <KeyboardAvoidingView behavior='padding' style={myStyles.container}>
+        <Text style={myStyles.title}>New Card for {title}</Text>
         <TextInput
           value={question}
-          style={styles.input}
+          style={myStyles.input}
           placeholder="Question"
           onChangeText={(input) => this.setState({ question: input })}
         />
         <TextInput
           value={answer}
-          style={styles.input}
+          style={myStyles.input}
           placeholder="Answer"
           onChangeText={(input) => this.setState({ answer: input })}
         />
@@ -62,24 +56,9 @@ class NewCard extends Component {
           disabled={question === "" || answer === "" ? true : false}
           title="Submit"
         />
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  input: {
-    padding: 15,
-    backgroundColor: "grey",
-    borderRadius: 10,
-    marginBottom: 20,
-  },
-});
 
 export default connect(mapStateToProps)(NewCard);
