@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import DeckPage from "../pages/DeckPage";
 import Home from "../pages/Home";
 import Questions from "../pages/Questions";
 import NewCard from "../pages/NewCard";
 import Quiz from "../pages/Quiz";
+import ListCards from "../pages/ListCards";
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,12 @@ const HomeNavigator = () => {
         options={{
           title: "Questions",
         }}
+      />
+      <Stack.Screen
+        name="AllCards"
+        component={ListCards}
+        options={({ route }) => ({ title: route.params.name })}
+
       />
       <Stack.Screen
         name="NewCard"

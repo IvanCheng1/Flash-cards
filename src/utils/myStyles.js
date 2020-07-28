@@ -65,4 +65,24 @@ export const myStyles = StyleSheet.create({
     fontSize: 18,
     color: "#bc3409",
   },
+  listCard: {
+    padding: 30,
+    margin: 20,
+    borderColor: "#f4511e",
+    borderWidth: 1,
+    borderRadius: 10,
+    width: 350,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  listCardQuestionText: {
+    textAlign: "center",
+    fontSize: 16,
+    paddingBottom: 5,
+  },
+  listCardQuestionAnswer: {
+    textAlign: "center",
+    fontSize: 14,
+    color: "#bc3409",
+  },
 });

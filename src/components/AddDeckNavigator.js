@@ -1,7 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
-import DeckPage from "../pages/DeckPage";
 import AddDeck from "../pages/AddDeck";
 
 const Stack = createStackNavigator();

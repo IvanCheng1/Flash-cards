@@ -40,6 +40,13 @@ class DeckPage extends Component {
     });
   };
 
+  showAllCards = (id, name) => {
+    this.props.navigation.navigate("AllCards", {
+      id,
+      name,
+    });
+  };
+
   render() {
     const id = this.props.route.params.id;
     const { decks } = this.props;
@@ -68,7 +75,7 @@ class DeckPage extends Component {
         </TouchableOpacity>
         <TouchableOpacity
           style={myStyles.btn}
-          onPress={() => alert("Feature coming")}
+          onPress={() => this.showAllCards(id, title)}
         >
           <Text style={myStyles.btnText}>View All Cards</Text>
         </TouchableOpacity>

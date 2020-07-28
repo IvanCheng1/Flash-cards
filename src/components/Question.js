@@ -1,26 +1,18 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { Text, View } from "react-native";
+import { myStyles } from "../utils/myStyles";
 
 
-function mapStateToProps({decks}, question) {
-  return {
-    question,
-  };
-}
+const Question = ({ question }) => {
+  const ans = question.answer;
+  const qu = question.question;
+  // console.log(question)
+  return (
+    <View style={myStyles.listCard}>
+      <Text style={myStyles.listCardQuestionText}>{qu}</Text>
+      <Text  style={myStyles.listCardQuestionAnswer}>{ans}</Text>
+    </View>
+  );
+};
 
-class Question extends Component {
-  render() {
-    const {question} = this.props
-
-    return (
-      <Text>
-        {question.question}
-      </Text>
-    );
-  }
-}
-
-export default connect(
-  mapStateToProps,
-)(Question);
+export default Question;
