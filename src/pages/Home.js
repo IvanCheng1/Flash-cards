@@ -16,9 +16,10 @@ class Home extends Component {
     this.props.dispatch(handleReceiveDecks());
   }
 
-  handlePress = (id) => {
+  handlePress = (id, name) => {
     this.props.navigation.navigate("DeckPage", {
       id,
+      name,
     });
   };
 
@@ -31,7 +32,7 @@ class Home extends Component {
         {Object.keys(decks).map((id) => (
           <TouchableOpacity
             style={styles.btn}
-            onPress={() => this.handlePress(id)}
+            onPress={() => this.handlePress(id, decks[id].title)}
             key={id}
           >
             <Deck key={id} id={id} />

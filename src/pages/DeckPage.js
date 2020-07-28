@@ -35,13 +35,12 @@ class DeckPage extends Component {
   startQuiz = (id) => {
     this.props.navigation.navigate("Quiz", {
       id,
-    })
-  }
+    });
+  };
 
   render() {
     const id = this.props.route.params.id;
     const { decks } = this.props;
-    // console.log(this.props.navigation)
 
     let title;
     let no;
@@ -59,10 +58,7 @@ class DeckPage extends Component {
         <TouchableOpacity style={styles.btn} onPress={() => this.addCard(id)}>
           <Text>New Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.btn}
-          onPress={() => this.startQuiz(id)}
-        >
+        <TouchableOpacity style={styles.btn} onPress={() => this.startQuiz(id)}>
           <Text>Start Quiz</Text>
         </TouchableOpacity>
         <Text>Button to View All</Text>

@@ -54,7 +54,6 @@ export const deleteDeck = async (deckId) => {
 export const addCard = async (deckId, card) => {
   const localStorage = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
   const decks = JSON.parse(localStorage);
-  // console.log(card)
 
   const item = JSON.stringify({
     [deckId]: {

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
 import DeckPage from "../pages/DeckPage";
 import Home from "../pages/Home";
 import Questions from "../pages/Questions";
@@ -11,12 +10,50 @@ const Stack = createStackNavigator();
 
 const HomeNavigator = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="DeckPage" component={DeckPage} />
-      <Stack.Screen name="Questions" component={Questions} />
-      <Stack.Screen name="NewCard" component={NewCard} />
-      <Stack.Screen name="Quiz" component={Quiz} />
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#f4511e",
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+      }}
+    >
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{
+          title: "My Home",
+        }}
+      />
+      <Stack.Screen
+        name="DeckPage"
+        component={DeckPage}
+        options={({ route }) => ({ title: route.params.name })}
+      />
+      <Stack.Screen
+        name="Questions"
+        component={Questions}
+        options={{
+          title: "Questions",
+        }}
+      />
+      <Stack.Screen
+        name="NewCard"
+        component={NewCard}
+        options={{
+          title: "New Card",
+        }}
+      />
+      <Stack.Screen
+        name="Quiz"
+        component={Quiz}
+        options={{
+          title: "Quiz",
+        }}
+      />
     </Stack.Navigator>
   );
 };
