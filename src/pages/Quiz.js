@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import QuestionCard from "../components/QuestionCard";
 import ResetQuiz from "../components/ResetQuiz";
 import { myStyles } from "../utils/myStyles";
+import { setLocalNotification, clearLocalNotification } from "../utils/helpers";
 import NoCards from "../components/NoCards";
 
 function mapStateToProps({ decks }) {
@@ -60,6 +61,8 @@ class Quiz extends Component {
       score: 0,
       showAnswer: false,
     });
+
+    clearLocalNotification().then(setLocalNotification);
   };
 
   goHome = () => {
@@ -70,13 +73,13 @@ class Quiz extends Component {
     this.props.navigation.navigate("NewCard", {
       id,
     });
-  }
+  };
 
   render() {
     const { id, title } = this.props.route.params;
     const { length, index, score } = this.state;
     if (length === 0) {
-      return <NoCards title={title} id={id} addCard={this.addCard}/>;
+      return <NoCards title={title} id={id} addCard={this.addCard} />;
     } else if (index < length) {
       return (
         <QuestionCard
