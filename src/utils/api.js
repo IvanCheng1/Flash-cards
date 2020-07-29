@@ -11,8 +11,6 @@ export const getDecks = async () => {
     const localStorage = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
 
     if (localStorage) {
-      console.log(JSON.parse(localStorage));
-
       return JSON.parse(localStorage);
     } else {
       const decks = _getDecks();
@@ -52,15 +50,18 @@ export const deleteDeck = async (deckId) => {
 };
 
 export const addCard = async (deckId, card) => {
-  const localStorage = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
-  const decks = JSON.parse(localStorage);
+  try {
+    const localStorage = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
+    const decks = JSON.parse(localStorage);
 
-  const item = JSON.stringify({
-    [deckId]: {
-      questions: [...decks[deckId].questions].concat(card),
-    },
-  });
+    const item = JSON.stringify({
+      [deckId]: {
+        questions: [...decks[deckId].questions].concat(card),
+      },
+    });
 
-  await AsyncStorage.mergeItem(DECKS_STORAGE_KEY, item);
-
-}
+    await AsyncStorage.mergeItem(DECKS_STORAGE_KEY, item);
+  } catch (e) {
+    console.log(e);
+  }
+};
