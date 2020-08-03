@@ -1,6 +1,6 @@
 # Flash Cards Project
 
-A React Native application
+A React Native application that allows users to study collections of flashcards. The app allows users to create different categories of decks, add flashcards to those decks, and take quizzes on the decks.
 
 ## Instructions
 
