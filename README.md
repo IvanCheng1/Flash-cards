@@ -2,6 +2,11 @@
 
 A React Native application that allows users to study collections of flashcards. The app allows users to create different categories of decks, add flashcards to those decks, and take quizzes on the decks.
 
+<p align="center">
+  <img src="./src/gifs/android-example.gif" height='500'/>
+  <img src="./src/gifs/ios-example.gif" height='500'/>
+</p>
+
 ## Instructions
 
 1. Clone the repo or download all the files
